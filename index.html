@@ -46,12 +46,12 @@
                 if (data.shortUrl) {
                     window.location.href = data.shortUrl;
                 } else {
-                    alert('Lỗi tạo link, vui lòng thử lại!');
+                    alert('Không thể tạo link, vui lòng thử lại!');
                     btn.innerText = '🔗 LẤY LINK GET KEY';
                     btn.disabled = false;
                 }
             } catch (err) {
-                alert('Có lỗi xảy ra!');
+                alert('Có lỗi xảy ra khi kết nối máy chủ!');
                 btn.innerText = '🔗 LẤY LINK GET KEY';
                 btn.disabled = false;
             }
