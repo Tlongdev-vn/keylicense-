@@ -3,344 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TLong Key System - Solix Hub</title>
+    <title>TLONG SYSTEM - Official Key System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0b0813; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
-        
+        body { 
+            background-color: #0b0813; 
+            color: #fff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px;
+        }
+
         .card { 
             background: #141024; 
-            border: 1.5px solid #5865f2; 
-            padding: 20px; 
-            border-radius: 12px; 
+            border: 1.5px solid #7000ff; 
+            padding: 25px; 
+            border-radius: 20px; 
             width: 100%; 
-            max-width: 400px; 
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-        }
-        
-        .title { color: #00f0ff; text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 15px; }
-        
-        .key-box { 
-            background: #1c1630; 
-            border: 1px dashed #78738c; 
-            padding: 12px; 
-            border-radius: 8px; 
-            font-size: 14px; 
-            font-weight: bold; 
-            color: #50ff8c; 
-            word-break: break-all; 
+            max-width: 420px; 
+            box-shadow: 0 0 30px rgba(112, 0, 255, 0.3);
             text-align: center;
-            margin-bottom: 12px; 
+            position: relative;
         }
 
-        .btn-group { display: flex; gap: 8px; margin-bottom: 12px; }
-        
-        button { 
-            flex: 1; 
-            padding: 12px; 
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00f0ff, #7000ff);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+        }
+
+        .subtitle { font-size: 11px; color: #00f0ff; letter-spacing: 1.5px; font-weight: bold; text-transform: uppercase; }
+        .title { font-size: 22px; color: #fff; font-weight: 800; margin: 4px 0 12px; text-shadow: 0 0 10px rgba(0,240,255,0.5); }
+        .desc { font-size: 12.5px; color: #a099c0; margin-bottom: 20px; }
+
+        .btn-get { 
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%); 
+            color: #fff; 
             border: none; 
-            border-radius: 8px; 
-            font-size: 13px;
-            font-weight: bold; 
+            padding: 14px 20px; 
+            font-size: 14px; 
+            font-weight: 700; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            width: 100%; 
+            letter-spacing: 0.5px; 
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+        } 
+        
+        .btn-get:hover { 
+            transform: translateY(-3px) scale(1.02); 
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6); 
+        }
+
+        .social-row { display: flex; justify-content: center; gap: 12px; margin-top: 15px; }
+        .social-btn { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            color: #fff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 18px; 
+            text-decoration: none; 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        } 
+        
+        .social-btn:hover { 
+            transform: translateY(-4px) scale(1.1); 
+            color: #00f0ff; 
+            border-color: #00f0ff; 
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4); 
+            background: rgba(0, 240, 255, 0.1); 
+        }
+
+        .music-player { 
+            margin-top: 18px; 
+            background: rgba(255, 255, 255, 0.04); 
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 12px; 
+            padding: 10px 14px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+        } 
+        
+        .music-info { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #c4c0dc; } 
+        .music-info i { color: #00f0ff; font-size: 14px; } 
+        
+        .music-btn { 
+            background: rgba(0, 240, 255, 0.15); 
+            border: 1px solid rgba(0, 240, 255, 0.3); 
+            color: #00f0ff; 
+            border-radius: 50%; 
+            width: 32px; 
+            height: 32px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
             cursor: pointer; 
             transition: 0.2s; 
-        }
+        } 
         
-        .btn-get { background: #00f0ff; color: #000; }
-        .btn-get:hover { background: #00c4d1; }
+        .music-btn:hover { transform: scale(1.1); background: #00f0ff; color: #000; }
+
+        .info-card { 
+            background: rgba(0, 0, 0, 0.3); 
+            border-radius: 12px; 
+            padding: 14px; 
+            margin-top: 22px; 
+            text-align: left; 
+            border-left: 3px solid #7000ff; 
+        } 
         
-        .btn-copy { background: #5865f2; color: #fff; }
-        .btn-copy:hover { background: #4752c4; }
-
-        .discord-card {
-            background: #1a152e;
-            border-radius: 8px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .discord-info { display: flex; align-items: center; gap: 10px; }
-        .discord-icon { width: 32px; height: 32px; border-radius: 50%; background: #5865f2; }
-        .discord-text h4 { font-size: 12px; color: #fff; }
-        .discord-text p { font-size: 10px; color: #50ff8c; }
-        
-        .btn-join { background: #5865f2; color: #fff; padding: 6px 12px; font-size: 11px; flex: initial; }
-
-        .note-box {
-            background: #171226;
-            border-radius: 8px;
-            padding: 10px;
-            font-size: 11px;
-            color: #f2a078;
-            line-height: 1.5;
-        }
+        .info-card strong { font-size: 12px; color: #d1c4ff; display: block; margin-bottom: 6px; } 
+        .info-card ul { list-style: none; font-size: 11.5px; color: #8b83ad; } 
+        .info-card li { margin-bottom: 5px; display: flex; align-items: center; gap: 6px; } 
+        .info-card li::before { content: '•'; color: #00f0ff; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="title">★ TLONG KEY SYSTEM ★</div>
-        
-        <div class="key-box" id="keyDisplay">Bấm nút bên dưới để tạo Key Link4m</div>
-        
-        <div class="btn-group">
-            <button class="btn-get" id="btnGetKey" onclick="handleGetKey()">🔗 LẤY LINK KEY MỚI</button>
-            <button class="btn-copy" onclick="copyKey()">📋 COPY KEY</button>
-        </div>
-
-        <div class="discord-card">
-            <div class="discord-info">
-                <div class="discord-icon"></div>
-                <div class="discord-text">
-                    <h4>TLong System Community</h4>
-                    <p>🟢 Join Server Discord Support</p>
-                </div>
-            </div>
-            <button class="btn-join" onclick="copyDiscord()">Copy Link</button>
-        </div>
-
-        <div class="note-box">
-            📌 <b>Hướng dẫn:</b><br>
-            • Mỗi lần bấm "LẤY LINK KEY MỚI" hệ thống sẽ mở link Link4m cho 1 Key ngẫu nhiên.<br>
-            • Vượt link thành công để lấy mã Key.<br>
-            • Bạn có thể tạo nhiều Key khác nhau trong ngày không giới hạn.
-        </div>
-    </div>
-
-    <script>
-        // TOKEN API LINK4M CỦA BẠN (Thay bằng token trên web Link4m)
-        const LINK4M_TOKEN = "YOUR_LINK4M_API_TOKEN"; 
-
-        async function handleGetKey() {
-            const display = document.getElementById('keyDisplay');
-            const btn = document.getElementById('btnGetKey');
-            
-            btn.innerText = "⏳ Đang tạo link...";
-            btn.disabled = true;
-
-            // 1. Lấy ngày hiện tại (DDMMYYYY)
-            const date = new Date();
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const year = date.getFullYear();
-            const todayStr = `${day}${month}${year}`;
-
-            // 2. Tạo mã ngẫu nhiên để key không bị trùng
-            const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-            
-            // Key sinh ra có dạng: TLong-21082026-X8K19P
-            const generatedKey = `TLong-${todayStr}-${randomCode}`;
-
-            // 3. Link hiển thị Key sau khi vượt link thành công
-            const targetUrl = `https://keylicenseprenium.vercel.app/showkey.html?key=${generatedKey}`;
-
-            try {
-                // 4. Gọi trực tiếp API Link4m để rút gọn
-                const link4mApi = `https://link4m.co/api-shorten?api=${LINK4M_TOKEN}&url=${encodeURIComponent(targetUrl)}`;
-                const response = await fetch(link4mApi);
-                const data = await response.json();
-
-                if (data && (data.shortenedUrl || data.url)) {
-                    const shortLink = data.shortenedUrl || data.url;
-                    display.innerText = generatedKey; // Hiển thị key tạm trên giao diện
-                    
-                    // Mở Link4m sang trang mới cho người dùng vượt link
-                    window.open(shortLink, '_blank');
-                } else {
-                    // Nếu Link4m lỗi thì chuyển thẳng đến link lấy key
-                    window.open(targetUrl, '_blank');
-                }
-            } catch (err) {
-                // Nếu bị chặn CORS hoặc lỗi kết nối, mở thẳng link đích
-                window.open(targetUrl, '_blank');
-            }
-
-            btn.innerText = "🔗 LẤY LINK KEY MỚI";
-            btn.disabled = false;
-        }
-
-        function copyKey() {
-            const keyText = document.getElementById('keyDisplay').innerText;
-            if (keyText.startsWith("TLong-")) {
-                navigator.clipboard.writeText(keyText);
-                alert("Đã copy Key!");
-            } else {
-                alert("Vui lòng bấm lấy Link Key trước!");
-            }
-        }
-
-        function copyDiscord() {
-            navigator.clipboard.writeText("https://discord.gg/TvwRC4tba");
-            alert("Đã copy link Discord!");
-        }
-    </script>
-</body>
-</html>            font-size: 18px;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .social-btn:hover {
-            transform: translateY(-4px) scale(1.1);
-            color: #00f0ff;
-            border-color: #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-            background: rgba(0, 240, 255, 0.1);
-        }
-
-        .btn-get {
-            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
-            color: #fff;
-            border: none;
-            padding: 14px 20px;
-            font-size: 14px;
-            font-weight: 700;
-            border-radius: 12px;
-            cursor: pointer;
-            width: 100%;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-get:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
-        }
-
-        .info-card {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            padding: 14px;
-            margin-top: 22px;
-            text-align: left;
-            border-left: 3px solid #7000ff;
-        }
-
-        .info-card strong {
-            font-size: 12px;
-            color: #d1c4ff;
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .info-card ul {
-            list-style: none;
-            font-size: 11.5px;
-            color: #8b83ad;
-        }
-
-        .info-card li {
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .info-card li::before {
-            content: '•';
-            color: #00f0ff;
-            font-weight: bold;
-        }
-
-        .music-player {
-            margin-top: 18px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .music-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-            color: #c4c0dc;
-        }
-
-        .music-info i {
-            color: #00f0ff;
-            font-size: 14px;
-        }
-
-        .music-btn {
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            color: #00f0ff;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.1);
-            background: #00f0ff;
-            color: #000;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card">
-        <div class="avatar-box">
-            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=TLong" alt="Avatar">
-        </div>
-
-        <span class="badge">Official Key System</span>
-        <h1>TLONG SYSTEM</h1>
-        <!-- Đã sửa lại nội dung văn bản theo yêu cầu -->
-        <p>Nhấn vào nút bên dưới để vượt link nhận Key hôm nay.</p>
-
-        <div class="social-links">
-            <a href="https://www.tiktok.com/@python_c3?_r=1&_t=ZS-992pYyYeTY5" target="_blank" class="social-btn" title="TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <a href="https://youtube.com/@namhavk?si=thKlHiuY4w7s5sBL" target="_blank" class="social-btn" title="YouTube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="https://discord.gg/TvwRC4tba" target="_blank" class="social-btn" title="Discord">
-                <i class="fa-brands fa-discord"></i>
-            </a>
-        </div>
-        
-        <button class="btn-get" onclick="getLink()">
+        <div class="avatar">
             <i class="fa-solid fa-key"></i>
-            <span id="btn-text">LẤY LINK GET KEY</span>
+        </div>
+        
+        <div class="subtitle">Official Key System</div>
+        <div class="title">TLONG SYSTEM</div>
+        <p class="desc">Nhấn vào nút bên dưới để vượt link nhận Key hôm nay.</p>
+
+        <button class="btn-get" id="btnGetKey" onclick="handleGetKey()">
+            <i class="fa-solid fa-bolt"></i> LẤY LINK GET KEY
         </button>
 
-        <!-- Trình phát nhạc với bài Vai Vai Trair Phonk -->
+        <div class="social-row">
+            <a href="https://discord.gg/TvwRC4tba" target="_blank" class="social-btn" title="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="social-btn" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
         <div class="music-player">
             <div class="music-info">
                 <i class="fa-solid fa-music"></i>
-                <span id="song-title">Vai Vai Trair Phonk</span>
+                <span>Vai Vai Trair Phonk</span>
             </div>
-            <button class="music-btn" id="playBtn" onclick="toggleMusic()">
-                <i class="fa-solid fa-play" id="musicIcon"></i>
-            </button>
+            <button class="music-btn" onclick="toggleMusic()"><i class="fa-solid fa-play" id="musicIcon"></i></button>
+            <audio id="bgMusic" loop src="https://files.catbox.moe/q2y05c.mp3"></audio>
         </div>
-
-        <!-- Nhạc nền Vai Vai Trair Phonk mới -->
-        <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2023/09/24/audio_3d1264b971.mp3?filename=aggressive-drift-phonk-169593.mp3"></audio>
 
         <div class="info-card">
             <strong>📌 LƯU Ý KHI GET KEY:</strong>
             <ul>
+                <li>Mỗi lần bấm "LẤY LINK GET KEY" sẽ mở link cho 1 Key ngẫu nhiên.</li>
                 <li>Key tự động cập nhật lại lúc 00:00 hàng ngày.</li>
                 <li>Key chỉ gắn cố định trên 1 thiết bị.</li>
                 <li>Thời gian vượt link an toàn từ 1 - 2 phút.</li>
@@ -349,55 +181,59 @@
     </div>
 
     <script>
-        async function getLink() {
-            const btnText = document.getElementById('btn-text');
-            const btn = document.querySelector('.btn-get');
-            btnText.innerText = 'Đang khởi tạo Link...';
-            btn.style.opacity = '0.7';
+        // TOKEN API LINK4M CỦA BẠN
+        const LINK4M_TOKEN = "YOUR_LINK4M_API_TOKEN"; 
+
+        async function handleGetKey() {
+            const btn = document.getElementById('btnGetKey');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang tạo link...';
             btn.disabled = true;
 
+            // Lấy ngày hiện tại
+            const date = new Date();
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            const todayStr = `${day}${month}${year}`;
+
+            // Tạo mã đuôi ngẫu nhiên để tạo được nhiều Key không bị trùng
+            const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            const generatedKey = `TLong-${todayStr}-${randomCode}`;
+
+            // Link trang hiển thị Key
+            const targetUrl = `https://keylicenseprenium.vercel.app/showkey.html?key=${generatedKey}`;
+
             try {
-                const res = await fetch('/api/getkey?action=generate-link');
-                const data = await res.json();
-                if (data.shortUrl) {
-                    window.location.href = data.shortUrl;
+                // Gọi API Link4m
+                const link4mApi = `https://link4m.co/api-shorten?api=${LINK4M_TOKEN}&url=${encodeURIComponent(targetUrl)}`;
+                const response = await fetch(link4mApi);
+                const data = await response.json();
+
+                if (data && (data.shortenedUrl || data.url)) {
+                    window.open(data.shortenedUrl || data.url, '_blank');
                 } else {
-                    alert('Không thể tạo link, vui lòng thử lại!');
-                    btnText.innerText = 'LẤY LINK GET KEY';
-                    btn.style.opacity = '1';
-                    btn.disabled = false;
+                    window.open(targetUrl, '_blank');
                 }
             } catch (err) {
-                alert('Có lỗi xảy ra khi kết nối máy chủ!');
-                btnText.innerText = 'LẤY LINK GET KEY';
-                btn.style.opacity = '1';
-                btn.disabled = false;
+                window.open(targetUrl, '_blank');
             }
+
+            btn.innerHTML = '<i class="fa-solid fa-bolt"></i> LẤY LINK GET KEY';
+            btn.disabled = false;
         }
 
-        const audio = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let isPlaying = false;
-
+        // Nhạc nền
         function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                musicIcon.className = 'fa-solid fa-play';
+            const music = document.getElementById('bgMusic');
+            const icon = document.getElementById('musicIcon');
+            if (music.paused) {
+                music.play();
+                icon.className = 'fa-solid fa-pause';
             } else {
-                audio.play();
-                musicIcon.className = 'fa-solid fa-pause';
+                music.pause();
+                icon.className = 'fa-solid fa-play';
             }
-            isPlaying = !isPlaying;
         }
-
-        document.body.addEventListener('click', function() {
-            if (!isPlaying) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    musicIcon.className = 'fa-solid fa-pause';
-                }).catch(() => {});
-            }
-        }, { once: true });
     </script>
 </body>
 </html>
