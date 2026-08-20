@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác nhận Key - TLONG SYSTEM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { 
+            background-color: #0b0813; 
+            color: #fff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px;
+        }
+        .card { 
+            background: #141024; 
+            border: 1.5px solid #00f0ff; 
+            padding: 25px; 
+            border-radius: 20px; 
+            width: 100%; 
+            max-width: 400px; 
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            text-align: center;
+        }
+        .icon-check { font-size: 50px; color: #50ff8c; margin-bottom: 10px; }
+        .title { font-size: 20px; font-weight: bold; color: #fff; margin-bottom: 15px; }
+        .key-box { 
+            background: #1c1630; 
+            border: 1.5px dashed #50ff8c; 
+            padding: 14px; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            color: #50ff8c; 
+            word-break: break-all; 
+            margin-bottom: 15px;
+        }
+        .btn-copy { 
+            background: #5865f2; 
+            color: #fff; 
+            border: none; 
+            padding: 12px; 
+            font-weight: bold; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .btn-copy:hover { background: #4752c4; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="icon-check"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="title">VƯỢT LINK THÀNH CÔNG!</div>
+        <p style="font-size: 12px; color: #aaa; margin-bottom: 10px;">Dưới đây là Mã Key của bạn hôm nay:</p>
+        
+        <div class="key-box" id="keyDisplay">Đang tải Key...</div>
+        
+        <button class="btn-copy" onclick="copyKey()"><i class="fa-solid fa-copy"></i> COPY KEY VÀO ROBLOX</button>
+    </div>
+
+    <script>
+        // Lấy mã Key từ URL dạng ?key=TLong-...
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentKey = urlParams.get('key');
+
+        if (currentKey) {
+            document.getElementById('keyDisplay').innerText = currentKey;
+        } else {
+            document.getElementById('keyDisplay').innerText = "Không tìm thấy Key!";
+            document.getElementById('keyDisplay').style.color = "#ff5050";
+        }
+
+        function copyKey() {
+            if (currentKey) {
+                navigator.clipboard.writeText(currentKey);
+                alert("Đã copy Key vào bộ nhớ tạm!");
+            }
+        }
+    </script>
+</body>
+</html>
