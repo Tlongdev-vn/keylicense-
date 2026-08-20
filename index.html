@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLong Key - Hệ Thống Get Key</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0813; color: #f5f5ff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
+        .container { background: #161224; border: 1.5px solid #00f0ff; border-radius: 12px; padding: 25px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
+        h1 { font-size: 20px; color: #00f0ff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        p { font-size: 13px; color: #b0abc5; margin-bottom: 20px; line-height: 1.5; }
+        .btn-get { background: #00f0ff; color: #08080c; border: none; padding: 12px 20px; font-weight: bold; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn-get:hover { background: #00c4d4; transform: scale(1.02); }
+        .info-card { background: #110d1f; border-radius: 8px; padding: 12px; margin-top: 20px; text-align: left; font-size: 12px; color: #f2a078; border-left: 3px solid #f2a078; }
+        .info-card ul { padding-left: 18px; margin-top: 5px; }
+        .info-card li { margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>★ TLONG KEY SYSTEM ★</h1>
+        <p>Nhấn vào nút bên dưới để vượt link xác thực và nhận Key sử dụng cho ngày hôm nay.</p>
+        
+        <button class="btn-get" onclick="getLink()">🔗 LẤY LINK GET KEY</button>
+
+        <div class="info-card">
+            <strong>📌 Quy định sử dụng Key:</strong>
+            <ul>
+                <li>Key tự động làm mới vào <strong>00:00</strong> hàng ngày (Giờ VN).</li>
+                <li>Mỗi Key chỉ cố định cho <strong>1 thiết bị</strong>.</li>
+                <li>Thời gian vượt link chỉ mất từ 1 - 2 phút.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function getLink() {
+            const btn = document.querySelector('.btn-get');
+            btn.innerText = '⏳ Đang tạo link...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/getkey?action=generate-link');
+                const data = await res.json();
+                if (data.shortUrl) {
+                    window.location.href = data.shortUrl;
+                } else {
+                    alert('Lỗi tạo link, vui lòng thử lại!');
+                    btn.innerText = '🔗 LẤY LINK GET KEY';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                alert('Có lỗi xảy ra!');
+                btn.innerText = '🔗 LẤY LINK GET KEY';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
