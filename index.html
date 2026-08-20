@@ -3,144 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TLONG KEY SYSTEM ★ GUNS.LOL STYLE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>TLong Key System - Solix Hub</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0813; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
         
-        body {
-            background: #050408;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
+        .card { 
+            background: #141024; 
+            border: 1.5px solid #5865f2; 
+            padding: 20px; 
+            border-radius: 12px; 
+            width: 100%; 
+            max-width: 400px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
         }
-
-        body::before {
-            content: '';
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            background: #00f0ff;
-            filter: blur(150px);
-            opacity: 0.2;
-            top: 10%;
-            left: 10%;
-            z-index: -1;
-            animation: pulseGlow 6s infinite alternate;
-        }
-
-        body::after {
-            content: '';
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            background: #7000ff;
-            filter: blur(150px);
-            opacity: 0.2;
-            bottom: 10%;
-            right: 10%;
-            z-index: -1;
-            animation: pulseGlow 6s infinite alternate-reverse;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.15; }
-            100% { transform: scale(1.2); opacity: 0.3; }
-        }
-
-        .card {
-            background: rgba(15, 12, 25, 0.65);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(0, 240, 255, 0.4);
-            border-radius: 24px;
-            padding: 35px 25px;
-            width: 100%;
-            max-width: 420px;
+        
+        .title { color: #00f0ff; text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 15px; }
+        
+        .key-box { 
+            background: #1c1630; 
+            border: 1px dashed #78738c; 
+            padding: 12px; 
+            border-radius: 8px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            color: #50ff8c; 
+            word-break: break-all; 
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-            animation: fadeIn 0.8s ease-out;
-            position: relative;
+            margin-bottom: 12px; 
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .avatar-box {
-            width: 85px;
-            height: 85px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            padding: 3px;
-            background: linear-gradient(135deg, #00f0ff, #7000ff);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-        }
-
-        .avatar-box img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #000;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(0, 240, 255, 0.1);
-            color: #00f0ff;
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 20px;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: 22px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        p {
+        .btn-group { display: flex; gap: 8px; margin-bottom: 12px; }
+        
+        button { 
+            flex: 1; 
+            padding: 12px; 
+            border: none; 
+            border-radius: 8px; 
             font-size: 13px;
-            color: #9a94b8;
-            line-height: 1.5;
-            margin-bottom: 20px;
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.2s; 
         }
+        
+        .btn-get { background: #00f0ff; color: #000; }
+        .btn-get:hover { background: #00c4d1; }
+        
+        .btn-copy { background: #5865f2; color: #fff; }
+        .btn-copy:hover { background: #4752c4; }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 22px;
-        }
-
-        .social-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
+        .discord-card {
+            background: #1a152e;
+            border-radius: 8px;
+            padding: 10px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 18px;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .discord-info { display: flex; align-items: center; gap: 10px; }
+        .discord-icon { width: 32px; height: 32px; border-radius: 50%; background: #5865f2; }
+        .discord-text h4 { font-size: 12px; color: #fff; }
+        .discord-text p { font-size: 10px; color: #50ff8c; }
+        
+        .btn-join { background: #5865f2; color: #fff; padding: 6px 12px; font-size: 11px; flex: initial; }
+
+        .note-box {
+            background: #171226;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 11px;
+            color: #f2a078;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="title">★ TLONG KEY SYSTEM ★</div>
+        
+        <div class="key-box" id="keyDisplay">Bấm nút bên dưới để tạo Key Link4m</div>
+        
+        <div class="btn-group">
+            <button class="btn-get" id="btnGetKey" onclick="handleGetKey()">🔗 LẤY LINK KEY MỚI</button>
+            <button class="btn-copy" onclick="copyKey()">📋 COPY KEY</button>
+        </div>
+
+        <div class="discord-card">
+            <div class="discord-info">
+                <div class="discord-icon"></div>
+                <div class="discord-text">
+                    <h4>TLong System Community</h4>
+                    <p>🟢 Join Server Discord Support</p>
+                </div>
+            </div>
+            <button class="btn-join" onclick="copyDiscord()">Copy Link</button>
+        </div>
+
+        <div class="note-box">
+            📌 <b>Hướng dẫn:</b><br>
+            • Mỗi lần bấm "LẤY LINK KEY MỚI" hệ thống sẽ mở link Link4m cho 1 Key ngẫu nhiên.<br>
+            • Vượt link thành công để lấy mã Key.<br>
+            • Bạn có thể tạo nhiều Key khác nhau trong ngày không giới hạn.
+        </div>
+    </div>
+
+    <script>
+        // TOKEN API LINK4M CỦA BẠN (Thay bằng token trên web Link4m)
+        const LINK4M_TOKEN = "YOUR_LINK4M_API_TOKEN"; 
+
+        async function handleGetKey() {
+            const display = document.getElementById('keyDisplay');
+            const btn = document.getElementById('btnGetKey');
+            
+            btn.innerText = "⏳ Đang tạo link...";
+            btn.disabled = true;
+
+            // 1. Lấy ngày hiện tại (DDMMYYYY)
+            const date = new Date();
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            const todayStr = `${day}${month}${year}`;
+
+            // 2. Tạo mã ngẫu nhiên để key không bị trùng
+            const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            
+            // Key sinh ra có dạng: TLong-21082026-X8K19P
+            const generatedKey = `TLong-${todayStr}-${randomCode}`;
+
+            // 3. Link hiển thị Key sau khi vượt link thành công
+            const targetUrl = `https://keylicenseprenium.vercel.app/showkey.html?key=${generatedKey}`;
+
+            try {
+                // 4. Gọi trực tiếp API Link4m để rút gọn
+                const link4mApi = `https://link4m.co/api-shorten?api=${LINK4M_TOKEN}&url=${encodeURIComponent(targetUrl)}`;
+                const response = await fetch(link4mApi);
+                const data = await response.json();
+
+                if (data && (data.shortenedUrl || data.url)) {
+                    const shortLink = data.shortenedUrl || data.url;
+                    display.innerText = generatedKey; // Hiển thị key tạm trên giao diện
+                    
+                    // Mở Link4m sang trang mới cho người dùng vượt link
+                    window.open(shortLink, '_blank');
+                } else {
+                    // Nếu Link4m lỗi thì chuyển thẳng đến link lấy key
+                    window.open(targetUrl, '_blank');
+                }
+            } catch (err) {
+                // Nếu bị chặn CORS hoặc lỗi kết nối, mở thẳng link đích
+                window.open(targetUrl, '_blank');
+            }
+
+            btn.innerText = "🔗 LẤY LINK KEY MỚI";
+            btn.disabled = false;
+        }
+
+        function copyKey() {
+            const keyText = document.getElementById('keyDisplay').innerText;
+            if (keyText.startsWith("TLong-")) {
+                navigator.clipboard.writeText(keyText);
+                alert("Đã copy Key!");
+            } else {
+                alert("Vui lòng bấm lấy Link Key trước!");
+            }
+        }
+
+        function copyDiscord() {
+            navigator.clipboard.writeText("https://discord.gg/TvwRC4tba");
+            alert("Đã copy link Discord!");
+        }
+    </script>
+</body>
+</html>            font-size: 18px;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
