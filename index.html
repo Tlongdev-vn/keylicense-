@@ -3,41 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TLong Key - Hệ Thống Get Key</title>
+    <title>TLONG KEY SYSTEM ★ GUNS.LOL STYLE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0813; color: #f5f5ff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 15px; }
-        .container { background: #161224; border: 1.5px solid #00f0ff; border-radius: 12px; padding: 25px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
-        h1 { font-size: 20px; color: #00f0ff; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-        p { font-size: 13px; color: #b0abc5; margin-bottom: 20px; line-height: 1.5; }
-        .btn-get { background: #00f0ff; color: #08080c; border: none; padding: 12px 20px; font-weight: bold; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; transition: 0.2s; }
-        .btn-get:hover { background: #00c4d4; transform: scale(1.02); }
-        .info-card { background: #110d1f; border-radius: 8px; padding: 12px; margin-top: 20px; text-align: left; font-size: 12px; color: #f2a078; border-left: 3px solid #f2a078; }
-        .info-card ul { padding-left: 18px; margin-top: 5px; }
-        .info-card li { margin-bottom: 4px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        body {
+            background: #050408;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Nền hiệu ứng Glow nhấp nháy guns.lol */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: #00f0ff;
+            filter: blur(150px);
+            opacity: 0.2;
+            top: 10%;
+            left: 10%;
+            z-index: -1;
+            animation: pulseGlow 6s infinite alternate;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: #7000ff;
+            filter: blur(150px);
+            opacity: 0.2;
+            bottom: 10%;
+            right: 10%;
+            z-index: -1;
+            animation: pulseGlow 6s infinite alternate-reverse;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.15; }
+            100% { transform: scale(1.2); opacity: 0.3; }
+        }
+
+        /* Card Guns.lol Glassmorphism */
+        .card {
+            background: rgba(15, 12, 25, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 24px;
+            padding: 35px 25px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Avatar Guns.lol */
+        .avatar-box {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #00f0ff, #7000ff);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 240, 255, 0.1);
+            color: #00f0ff;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-size: 13px;
+            color: #9a94b8;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* Thanh Social Icons (TikTok, YouTube, Discord) */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+            color: #00f0ff;
+            border-color: #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            background: rgba(0, 240, 255, 0.1);
+        }
+
+        /* Nút Bấm Neon Get Key */
+        .btn-get {
+            background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+            color: #fff;
+            border: none;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-get:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Khung thông tin quy định */
+        .info-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 22px;
+            text-align: left;
+            border-left: 3px solid #7000ff;
+        }
+
+        .info-card strong {
+            font-size: 12px;
+            color: #d1c4ff;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            font-size: 11.5px;
+            color: #8b83ad;
+        }
+
+        .info-card li {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .info-card li::before {
+            content: '•';
+            color: #00f0ff;
+            font-weight: bold;
+        }
+
+        /* Trình phát nhạc Guns.lol Widget */
+        .music-player {
+            margin-top: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: #c4c0dc;
+        }
+
+        .music-info i {
+            color: #00f0ff;
+            font-size: 14px;
+        }
+
+        .music-btn {
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #00f0ff;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: #00f0ff;
+            color: #000;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>★ TLONG KEY SYSTEM ★</h1>
-        <p>Nhấn vào nút bên dưới để vượt link xác thực và nhận Key sử dụng cho ngày hôm nay.</p>
-        
-        <button class="btn-get" onclick="getLink()">🔗 LẤY LINK GET KEY</button>
 
+    <div class="card">
+        <!-- Avatar -->
+        <div class="avatar-box">
+            <img src="https://api.dicebear.com/7.x/bottts/svg?seed=TLong" alt="Avatar">
+        </div>
+
+        <span class="badge">Official Key System</span>
+        <h1>TLONG SYSTEM</h1>
+        <p>Nhấn vào nút bên dưới để vượt link nhận Key Solix Hub hôm nay.</p>
+
+        <!-- Icon Mạng Xã Hội Đã Được Nhập Link Của Bạn -->
+        <div class="social-links">
+            <a href="https://www.tiktok.com/@python_c3?_r=1&_t=ZS-992pYyYeTY5" target="_blank" class="social-btn" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://youtube.com/@namhavk?si=thKlHiuY4w7s5sBL" target="_blank" class="social-btn" title="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://discord.gg/TvwRC4tba" target="_blank" class="social-btn" title="Discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+        </div>
+        
+        <!-- Nút Get Key -->
+        <button class="btn-get" onclick="getLink()">
+            <i class="fa-solid fa-key"></i>
+            <span id="btn-text">LẤY LINK GET KEY</span>
+        </button>
+
+        <!-- Trình phát Nhạc Nền Guns.lol -->
+        <div class="music-player">
+            <div class="music-info">
+                <i class="fa-solid fa-music"></i>
+                <span id="song-title">Phonk Background Music</span>
+            </div>
+            <button class="music-btn" id="playBtn" onclick="toggleMusic()">
+                <i class="fa-solid fa-play" id="musicIcon"></i>
+            </button>
+        </div>
+
+        <!-- Nhạc nền -->
+        <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+
+        <!-- Thông tin quy định -->
         <div class="info-card">
-            <strong>📌 Quy định sử dụng Key:</strong>
+            <strong>📌 LƯU Ý KHI GET KEY:</strong>
             <ul>
-                <li>Key tự động làm mới vào <strong>00:00</strong> hàng ngày (Giờ VN).</li>
-                <li>Mỗi Key chỉ cố định cho <strong>1 thiết bị</strong>.</li>
-                <li>Thời gian vượt link chỉ mất từ 1 - 2 phút.</li>
+                <li>Key tự động cập nhật lại lúc 00:00 hàng ngày.</li>
+                <li>Key chỉ gắn cố định trên 1 thiết bị.</li>
+                <li>Thời gian vượt link an toàn từ 1 - 2 phút.</li>
             </ul>
         </div>
     </div>
 
     <script>
         async function getLink() {
+            const btnText = document.getElementById('btn-text');
             const btn = document.querySelector('.btn-get');
-            btn.innerText = '⏳ Đang tạo link...';
+            btnText.innerText = 'Đang khởi tạo Link...';
+            btn.style.opacity = '0.7';
             btn.disabled = true;
 
             try {
@@ -47,15 +336,41 @@
                     window.location.href = data.shortUrl;
                 } else {
                     alert('Không thể tạo link, vui lòng thử lại!');
-                    btn.innerText = '🔗 LẤY LINK GET KEY';
+                    btnText.innerText = 'LẤY LINK GET KEY';
+                    btn.style.opacity = '1';
                     btn.disabled = false;
                 }
             } catch (err) {
                 alert('Có lỗi xảy ra khi kết nối máy chủ!');
-                btn.innerText = '🔗 LẤY LINK GET KEY';
+                btnText.innerText = 'LẤY LINK GET KEY';
+                btn.style.opacity = '1';
                 btn.disabled = false;
             }
         }
+
+        const audio = document.getElementById('bgMusic');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                musicIcon.className = 'fa-solid fa-play';
+            } else {
+                audio.play();
+                musicIcon.className = 'fa-solid fa-pause';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.className = 'fa-solid fa-pause';
+                }).catch(() => {});
+            }
+        }, { once: true });
     </script>
 </body>
 </html>
