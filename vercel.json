@@ -1,9 +1,8 @@
 {
-  "version": 2,
   "rewrites": [
     {
       "source": "/api/getkey",
-      "destination": "/api/getkey.js"
+      "destination": "/getkey.js"
     }
   ]
 }
