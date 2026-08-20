@@ -1,70 +1,49 @@
-// =================================================================
-// BACKEND API - GET KEY SYSTEM (TLONG SYSTEM)
-// =================================================================
-
-const SHORTENER_API = "https://link4m.co/api-shorten"; // Đổi link API web rút gọn của bạn tại đây
-const SHORTENER_TOKEN = "68b3dda628184c43725cb671";              // Đổi API Token của bạn tại đây
-
-// Hàm lấy ngày GMT+7 định dạng DDMMYYYY
-function getTodayGMT7() {
-    const now = new Date();
-    const formatter = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Asia/Ho_Chi_Minh',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    });
-    const [{ value: day }, , { value: month }, , { value: year }] = formatter.formatToParts(now);
-    return `${day}${month}${year}`;
-}
-
 export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
-    const { action, deviceId } = req.query;
+    // 1. CẤU HÌNH LINK4M (Thay Token của bạn vào đây)
+    const LINK4M_API_TOKEN = "68b3dda628184c43725cb671"; 
 
-    // 1. Tạo Link Get Key
-    if (action === 'generate-link') {
-        try {
-            const today = getTodayGMT7();
-            const destinationUrl = `https://${req.headers.host}/?key_generated=true&date=${today}`;
+    // 2. TẠO KEY NGẪU NHIÊN THEO NGÀY
+    const options = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', year: 'numeric' };
+    const formatter = new Intl.DateTimeFormat('en-GB', options);
+    const [{ value: day }, , { value: month }, , { value: year }] = formatter.formatToParts(new Date());
+    const todayDateStr = `${day}${month}${year}`;
 
-            // Gọi sang API web rút gọn
-            const response = await fetch(`${SHORTENER_API}?api=${SHORTENER_TOKEN}&url=${encodeURIComponent(destinationUrl)}`);
-            const data = await response.json();
+    const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+    const generatedKey = `TLong-${todayDateStr}-${randomCode}`;
 
-            if (data && (data.shortenedUrl || data.shortlink || data.url)) {
-                return res.status(200).json({
-                    success: true,
-                    shortUrl: data.shortenedUrl || data.shortlink || data.url
-                });
-            } else {
-                // Nếu chưa cài token rút gọn -> Fallback về link gốc
-                return res.status(200).json({
-                    success: true,
-                    shortUrl: destinationUrl
-                });
-            }
-        } catch (err) {
-            return res.status(500).json({ success: false, message: "Lỗi kết nối máy chủ!" });
+    // 3. TẠO LINK HIỂN THỊ KEY SAU KHI VƯỢT LINK
+    // Trang đích trả về kết quả key sau khi người dùng vượt xong link4m
+    const targetUrl = `https://keylicenseprenium.vercel.app/showkey.html?key=${generatedKey}`;
+
+    try {
+        // 4. GỌI API LINK4M ĐỂ TẠO LINK RÚT GỌN CHỨA KEY MỚI
+        const link4mApiUrl = `https://link4m.co/api-shorten?api=${LINK4M_API_TOKEN}&url=${encodeURIComponent(targetUrl)}`;
+        
+        const response = await fetch(link4mApiUrl);
+        const data = await response.json();
+
+        if (data && (data.shortenedUrl || data.url)) {
+            return res.status(200).json({
+                success: true,
+                key: generatedKey,
+                shortLink: data.shortenedUrl || data.url
+            });
+        } else {
+            // Nếu Link4m lỗi, trả về link đích trực tiếp để không làm gián đoạn người dùng
+            return res.status(200).json({
+                success: true,
+                key: generatedKey,
+                shortLink: targetUrl
+            });
         }
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Lỗi kết nối Link4m API" });
     }
-
-    // 2. Trả về Key theo thiết bị
-    if (action === 'get-key-value') {
-        const today = getTodayGMT7();
-        const clientDevice = deviceId || "DEVICE";
-        return res.status(200).json({
-            success: true,
-            key: `TLong-${today}-${clientDevice}`
-        });
-    }
-
-    return res.status(400).json({ success: false, message: "Action không hợp lệ!" });
 }
