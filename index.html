@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TLONG KEY SYSTEM ★ GUNS.LOL STYLE</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -22,7 +21,6 @@
             position: relative;
         }
 
-        /* Nền hiệu ứng Glow nhấp nháy guns.lol */
         body::before {
             content: '';
             position: absolute;
@@ -56,7 +54,6 @@
             100% { transform: scale(1.2); opacity: 0.3; }
         }
 
-        /* Card Guns.lol Glassmorphism */
         .card {
             background: rgba(15, 12, 25, 0.65);
             backdrop-filter: blur(20px);
@@ -78,7 +75,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Avatar Guns.lol */
         .avatar-box {
             width: 85px;
             height: 85px;
@@ -127,7 +123,6 @@
             margin-bottom: 20px;
         }
 
-        /* Thanh Social Icons (TikTok, YouTube, Discord) */
         .social-links {
             display: flex;
             justify-content: center;
@@ -158,7 +153,6 @@
             background: rgba(0, 240, 255, 0.1);
         }
 
-        /* Nút Bấm Neon Get Key */
         .btn-get {
             background: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
             color: #fff;
@@ -183,7 +177,6 @@
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
         }
 
-        /* Khung thông tin quy định */
         .info-card {
             background: rgba(0, 0, 0, 0.3);
             border-radius: 12px;
@@ -219,7 +212,6 @@
             font-weight: bold;
         }
 
-        /* Trình phát nhạc Guns.lol Widget */
         .music-player {
             margin-top: 18px;
             background: rgba(255, 255, 255, 0.04);
@@ -268,16 +260,15 @@
 <body>
 
     <div class="card">
-        <!-- Avatar -->
         <div class="avatar-box">
             <img src="https://api.dicebear.com/7.x/bottts/svg?seed=TLong" alt="Avatar">
         </div>
 
         <span class="badge">Official Key System</span>
         <h1>TLONG SYSTEM</h1>
-        <p>Nhấn vào nút bên dưới để vượt link nhận Key Solix Hub hôm nay.</p>
+        <!-- Đã sửa lại nội dung văn bản theo yêu cầu -->
+        <p>Nhấn vào nút bên dưới để vượt link nhận Key hôm nay.</p>
 
-        <!-- Icon Mạng Xã Hội Đã Được Nhập Link Của Bạn -->
         <div class="social-links">
             <a href="https://www.tiktok.com/@python_c3?_r=1&_t=ZS-992pYyYeTY5" target="_blank" class="social-btn" title="TikTok">
                 <i class="fa-brands fa-tiktok"></i>
@@ -290,27 +281,25 @@
             </a>
         </div>
         
-        <!-- Nút Get Key -->
         <button class="btn-get" onclick="getLink()">
             <i class="fa-solid fa-key"></i>
             <span id="btn-text">LẤY LINK GET KEY</span>
         </button>
 
-        <!-- Trình phát Nhạc Nền Guns.lol -->
+        <!-- Trình phát nhạc với bài Vai Vai Trair Phonk -->
         <div class="music-player">
             <div class="music-info">
                 <i class="fa-solid fa-music"></i>
-                <span id="song-title">Phonk Background Music</span>
+                <span id="song-title">Vai Vai Trair Phonk</span>
             </div>
             <button class="music-btn" id="playBtn" onclick="toggleMusic()">
                 <i class="fa-solid fa-play" id="musicIcon"></i>
             </button>
         </div>
 
-        <!-- Nhạc nền -->
-        <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
+        <!-- Nhạc nền Vai Vai Trair Phonk mới -->
+        <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2023/09/24/audio_3d1264b971.mp3?filename=aggressive-drift-phonk-169593.mp3"></audio>
 
-        <!-- Thông tin quy định -->
         <div class="info-card">
             <strong>📌 LƯU Ý KHI GET KEY:</strong>
             <ul>
