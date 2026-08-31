@@ -9,17 +9,21 @@ export default async function handler(req, res) {
     // 1. CẤU HÌNH LINK4M (Thay Token của bạn vào đây)
     const LINK4M_API_TOKEN = "68b3dda628184c43725cb671"; 
 
-    // 2. TẠO KEY NGẪU NHIÊN THEO NGÀY
+    // 2. TẠO KEY CHUẨN MÚI GIỜ VIỆT NAM (Asia/Ho_Chi_Minh)
     const options = { timeZone: 'Asia/Ho_Chi_Minh', day: '2-digit', month: '2-digit', year: 'numeric' };
     const formatter = new Intl.DateTimeFormat('en-GB', options);
-    const [{ value: day }, , { value: month }, , { value: year }] = formatter.formatToParts(new Date());
-    const todayDateStr = `${day}${month}${year}`;
+    const parts = formatter.formatToParts(new Date());
+
+    const day = parts.find(p => p.type === 'day').value;
+    const month = parts.find(p => p.type === 'month').value;
+    const year = parts.find(p => p.type === 'year').value;
+    
+    const todayDateStr = `${day}${month}${year}`; // Kết quả: DDMMYYYY theo giờ VN
 
     const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
     const generatedKey = `TLong-${todayDateStr}-${randomCode}`;
 
     // 3. TẠO LINK HIỂN THỊ KEY SAU KHI VƯỢT LINK
-    // Trang đích trả về kết quả key sau khi người dùng vượt xong link4m
     const targetUrl = `https://keylicenseprenium.vercel.app/showkey.html?key=${generatedKey}`;
 
     try {
