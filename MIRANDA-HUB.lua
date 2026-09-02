@@ -5,7 +5,7 @@
 local DOMAIN_VERCEL = "https://keylicensenew2.vercel.app/"
 local DISCORD_INVITE = "https://discord.gg/TvwRC4tba"
 local DISCORD_ICON_URL = "rbxassetid://99761773347476"
-local SAVE_FILE_NAME = "TLongSystem_KeySave.txt" -- File lưu trạng thái key
+local SAVE_FILE_NAME = "TLongHub_Key.txt" -- File lưu trạng thái key
 
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
