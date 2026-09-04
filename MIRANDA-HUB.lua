@@ -1,11 +1,11 @@
 -- =================================================================
--- HỆ THỐNG GET KEY SOLIX HUB - TLONG SYSTEM (AUTO-SAVE KEY)
+-- HỆ THỐNG GET KEY - TLONG SYSTEM (AUTO-SAVE KEY)
 -- =================================================================
 
 local DOMAIN_VERCEL = "https://keylicensenew2.vercel.app/"
 local DISCORD_INVITE = "https://discord.gg/TvwRC4tba"
 local DISCORD_ICON_URL = "rbxassetid://99761773347476"
-local SAVE_FILE_NAME = "TLongHub_Key.txt" -- File lưu trạng thái key
+local SAVE_FILE_NAME = "TlongkeySystem_Miranda.txt" -- File lưu trạng thái key
 
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -13,6 +13,52 @@ local CoreGui = game:GetService("CoreGui")
 local Players = game:GetService("Players")
 
 local LocalPlayer = Players.LocalPlayer
+
+-- Ngôn ngữ mặc định: English
+local currentLang = "EN"
+
+local Translations = {
+    VI = {
+        Title = "TLONG KEY SYSTEM - Miranda Hub",
+        Placeholder = "Nhập Key xác thực vào đây...",
+        GetKey = "🔗 LẤY LINK KEY",
+        CheckKey = "✔ KIỂM TRA KEY",
+        Checking = "⏳ Đang duyệt...",
+        SuccessBtn = "✔ THÀNH CÔNG",
+        DefaultStatus = "⚡ Key tự động làm mới lúc 00:00 hàng ngày",
+        DiscordSub = "🟢 Join Server Discord Support",
+        CopyBtn = "Coppy",
+        CopiedBtn = "✔ ĐÃ COPY",
+        GetKeyCopied = "✔ ĐÃ SAO CHÉP",
+        CopyDiscordStatus = "💬 Đã copy link Discord! Đã mở ứng dụng Discord (nếu có).",
+        CopyKeyStatus = "📋 Đã sao chép Link Web! Hãy dán lên trình duyệt để Get Key.",
+        CheckingStatus = "Đang kiểm tra tính hợp lệ...",
+        ValidStatus = "✔ Key hợp lệ! Đang khởi chạy Solix Hub...",
+        InvalidStatus = "✖ Key không hợp lệ hoặc đã hết hạn ngày hôm nay!",
+        LangToggleText = "🌐 VI",
+        NoteText = "📌 Lưu ý quan trọng:\n• Truy cập link web để lấy Key trong ngày.\n• Mỗi Key chỉ áp dụng cho 1 thiết bị duy nhất.\n• Key tự động làm mới vào 00:00 (Giờ Việt Nam).\n• Tham gia Discord để nhận trợ giúp khi gặp lỗi Script.\n• TikTok: Royah Roblox or @python_c3 \n• Hãy follow để nhận nhiều script xịn"
+    },
+    EN = {
+        Title = "TLONG KEY SYSTEM - Miranda Hub",
+        Placeholder = "Enter verification key here...",
+        GetKey = "🔗 GET KEY LINK",
+        CheckKey = "✔ CHECK KEY",
+        Checking = "⏳ Checking...",
+        SuccessBtn = "✔ SUCCESS",
+        DefaultStatus = "⚡ Key automatically resets at 00:00 daily",
+        DiscordSub = "🟢 Join Discord Support Server",
+        CopyBtn = "Copy",
+        CopiedBtn = "✔ COPIED",
+        GetKeyCopied = "✔ COPIED",
+        CopyDiscordStatus = "💬 Discord link copied! Opened Discord app if available.",
+        CopyKeyStatus = "📋 Web link copied! Paste it into your browser to Get Key.",
+        CheckingStatus = "Checking key validity...",
+        ValidStatus = "✔ Valid Key! Launching Solix Hub...",
+        InvalidStatus = "✖ Invalid key or key has expired today!",
+        LangToggleText = "🌐 EN",
+        NoteText = "📌 Important Notes:\n• Access the website link to get today's key.\n• Each Key applies to 1 device only.\n• Keys auto-reset at 00:00 (Vietnam Time).\n• Join Discord for support if you encounter script errors.\n• TikTok: Royah Roblox or @python_c3 \n• Follow for more awesome scripts"
+    }
+}
 
 -- Hàm lấy định dạng ngày GMT+7 (DDMMYYYY)
 local function GetCurrentDateString()
@@ -27,7 +73,7 @@ local function LaunchMainScript()
             return loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/refs/heads/main/stealaegg"))()
         end)
         if not success then
-            warn("[Clover Hub Error]:", result)
+            warn("[Miranda Hub Error]:", result)
         end
     end)
 end
@@ -107,14 +153,35 @@ end)
 
 -- Tiêu đề
 local TitleLabel = Instance.new("TextLabel")
-TitleLabel.Size = UDim2.new(1, -30, 0, 22)
+TitleLabel.Size = UDim2.new(1, -90, 0, 22)
 TitleLabel.Position = UDim2.new(0, 15, 0, 8)
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Text = "TLONG KEY SYSTEM - MIRANDA HUB"
+TitleLabel.Text = Translations[currentLang].Title
 TitleLabel.TextColor3 = Color3.fromRGB(245, 245, 255)
 TitleLabel.TextSize = 13
 TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 TitleLabel.Parent = MainFrame
+
+-- Nút Chuyển Đổi Ngôn Ngữ (EN / VI)
+local LangBtn = Instance.new("TextButton")
+LangBtn.Size = UDim2.new(0, 55, 0, 22)
+LangBtn.Position = UDim2.new(1, -70, 0, 8)
+LangBtn.BackgroundColor3 = Color3.fromRGB(26, 20, 45)
+LangBtn.Text = Translations[currentLang].LangToggleText
+LangBtn.TextColor3 = Color3.fromRGB(255, 215, 100)
+LangBtn.TextSize = 10.5
+LangBtn.Font = Enum.Font.GothamBold
+LangBtn.Parent = MainFrame
+
+local LangCorner = Instance.new("UICorner")
+LangCorner.CornerRadius = UDim.new(0, 6)
+LangCorner.Parent = LangBtn
+
+local LangStroke = Instance.new("UIStroke")
+LangStroke.Color = Color3.fromRGB(55, 45, 85)
+LangStroke.Thickness = 1
+LangStroke.Parent = LangBtn
 
 -- Ô nhập Key
 local InputBox = Instance.new("TextBox")
@@ -123,7 +190,7 @@ InputBox.Position = UDim2.new(0, 15, 0, 33)
 InputBox.BackgroundColor3 = Color3.fromRGB(22, 18, 36)
 InputBox.TextColor3 = Color3.fromRGB(245, 245, 255)
 InputBox.PlaceholderColor3 = Color3.fromRGB(120, 115, 140)
-InputBox.PlaceholderText = "Nhập Key xác thực vào đây..."
+InputBox.PlaceholderText = Translations[currentLang].Placeholder
 InputBox.Text = ""
 InputBox.TextSize = 12
 InputBox.Font = Enum.Font.GothamMedium
@@ -149,7 +216,7 @@ ButtonsRow.Parent = MainFrame
 local GetKeyBtn = Instance.new("TextButton")
 GetKeyBtn.Size = UDim2.new(0.5, -5, 1, 0)
 GetKeyBtn.BackgroundColor3 = Color3.fromRGB(0, 240, 255)
-GetKeyBtn.Text = "🔗 LẤY LINK KEY"
+GetKeyBtn.Text = Translations[currentLang].GetKey
 GetKeyBtn.TextColor3 = Color3.fromRGB(8, 8, 12)
 GetKeyBtn.TextSize = 12
 GetKeyBtn.Font = Enum.Font.GothamBold
@@ -164,7 +231,7 @@ local CheckKeyBtn = Instance.new("TextButton")
 CheckKeyBtn.Size = UDim2.new(0.5, -5, 1, 0)
 CheckKeyBtn.Position = UDim2.new(0.5, 5, 0, 0)
 CheckKeyBtn.BackgroundColor3 = Color3.fromRGB(38, 30, 62)
-CheckKeyBtn.Text = "✔ KIỂM TRA KEY"
+CheckKeyBtn.Text = Translations[currentLang].CheckKey
 CheckKeyBtn.TextColor3 = Color3.fromRGB(245, 245, 255)
 CheckKeyBtn.TextSize = 12
 CheckKeyBtn.Font = Enum.Font.GothamBold
@@ -190,7 +257,7 @@ local StatusMsg = Instance.new("TextLabel")
 StatusMsg.Size = UDim2.new(1, -12, 1, 0)
 StatusMsg.Position = UDim2.new(0, 6, 0, 0)
 StatusMsg.BackgroundTransparency = 1
-StatusMsg.Text = "⚡ Key tự động làm mới lúc 00:00 hàng ngày"
+StatusMsg.Text = Translations[currentLang].DefaultStatus
 StatusMsg.TextColor3 = Color3.fromRGB(180, 175, 205)
 StatusMsg.TextSize = 9.5
 StatusMsg.Font = Enum.Font.GothamMedium
@@ -238,7 +305,7 @@ local ServerSub = Instance.new("TextLabel")
 ServerSub.Size = UDim2.new(0, 180, 0, 14)
 ServerSub.Position = UDim2.new(0, 48, 0, 25)
 ServerSub.BackgroundTransparency = 1
-ServerSub.Text = "🟢 Join Server Discord Support"
+ServerSub.Text = Translations[currentLang].DiscordSub
 ServerSub.TextColor3 = Color3.fromRGB(80, 255, 140)
 ServerSub.TextSize = 9.5
 ServerSub.Font = Enum.Font.GothamMedium
@@ -249,7 +316,7 @@ local JoinDiscordBtn = Instance.new("TextButton")
 JoinDiscordBtn.Size = UDim2.new(0, 100, 0, 28)
 JoinDiscordBtn.Position = UDim2.new(1, -108, 0.5, -14)
 JoinDiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
-JoinDiscordBtn.Text = "Coppy"
+JoinDiscordBtn.Text = Translations[currentLang].CopyBtn
 JoinDiscordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 JoinDiscordBtn.TextSize = 10.5
 JoinDiscordBtn.Font = Enum.Font.GothamBold
@@ -280,8 +347,27 @@ NoteLabel.Font = Enum.Font.Gotham
 NoteLabel.TextWrapped = true
 NoteLabel.TextYAlignment = Enum.TextYAlignment.Top
 NoteLabel.TextXAlignment = Enum.TextXAlignment.Left
-NoteLabel.Text = "📌 Lưu ý quan trọng:\n• Truy cập link web để lấy Key trong ngày.\n• Mỗi Key chỉ áp dụng cho 1 thiết bị duy nhất.\n• Key tự động làm mới vào 00:00 (Giờ Việt Nam).\n• Tham gia Discord để nhận trợ giúp khi gặp lỗi Script.\n• TikTok: Royah Roblox or @python_c3"
+NoteLabel.Text = Translations[currentLang].NoteText
 NoteLabel.Parent = NoteCard
+
+-- CẬP NHẬT GIAO DIỆN KHI ĐỔI NGÔN NGỮ
+local function UpdateLanguage()
+    local t = Translations[currentLang]
+    TitleLabel.Text = t.Title
+    InputBox.PlaceholderText = t.Placeholder
+    GetKeyBtn.Text = t.GetKey
+    CheckKeyBtn.Text = t.CheckKey
+    StatusMsg.Text = t.DefaultStatus
+    ServerSub.Text = t.DiscordSub
+    JoinDiscordBtn.Text = t.CopyBtn
+    NoteLabel.Text = t.NoteText
+    LangBtn.Text = t.LangToggleText
+end
+
+LangBtn.MouseButton1Click:Connect(function()
+    currentLang = (currentLang == "VI") and "EN" or "VI"
+    UpdateLanguage()
+end)
 
 -- =================================================================
 -- HIỆU ỨNG TƯƠNG TÁC & FADE OUT THÀNH CÔNG
@@ -356,12 +442,12 @@ JoinDiscordBtn.MouseButton1Click:Connect(function()
     
     StatusBanner.BackgroundColor3 = Color3.fromRGB(30, 35, 75)
     StatusMsg.TextColor3 = Color3.fromRGB(120, 150, 255)
-    StatusMsg.Text = "💬 Đã copy link Discord! Đã mở ứng dụng Discord (nếu có)."
+    StatusMsg.Text = Translations[currentLang].CopyDiscordStatus
     
-    JoinDiscordBtn.Text = "✔ ĐÃ COPY"
+    JoinDiscordBtn.Text = Translations[currentLang].CopiedBtn
     task.delay(2, function()
         if JoinDiscordBtn and JoinDiscordBtn.Parent then
-            JoinDiscordBtn.Text = "Coppy"
+            JoinDiscordBtn.Text = Translations[currentLang].CopyBtn
         end
     end)
 end)
@@ -372,12 +458,12 @@ GetKeyBtn.MouseButton1Click:Connect(function()
     
     StatusBanner.BackgroundColor3 = Color3.fromRGB(0, 50, 60)
     StatusMsg.TextColor3 = Color3.fromRGB(0, 240, 255)
-    StatusMsg.Text = "📋 Đã sao chép Link Web! Hãy dán lên trình duyệt để Get Key."
+    StatusMsg.Text = Translations[currentLang].CopyKeyStatus
     
-    GetKeyBtn.Text = "✔ ĐÃ SAO CHÉP"
+    GetKeyBtn.Text = Translations[currentLang].GetKeyCopied
     task.delay(2, function()
         if GetKeyBtn and GetKeyBtn.Parent then
-            GetKeyBtn.Text = "🔗 LẤY LINK KEY"
+            GetKeyBtn.Text = Translations[currentLang].GetKey
         end
     end)
 end)
@@ -388,10 +474,10 @@ CheckKeyBtn.MouseButton1Click:Connect(function()
     isChecking = true
     PlayBounce(CheckKeyBtn)
     
-    CheckKeyBtn.Text = "⏳ Đang duyệt..."
+    CheckKeyBtn.Text = Translations[currentLang].Checking
     StatusBanner.BackgroundColor3 = Color3.fromRGB(26, 20, 45)
     StatusMsg.TextColor3 = Color3.fromRGB(240, 240, 255)
-    StatusMsg.Text = "Đang kiểm tra tính hợp lệ..."
+    StatusMsg.Text = Translations[currentLang].CheckingStatus
     
     task.wait(0.35)
     local enteredKey = string.gsub(InputBox.Text, "%s+", "")
@@ -399,8 +485,8 @@ CheckKeyBtn.MouseButton1Click:Connect(function()
     if enteredKey:find("TLong%-" .. todayDateStr) then
         StatusBanner.BackgroundColor3 = Color3.fromRGB(15, 60, 30)
         StatusMsg.TextColor3 = Color3.fromRGB(80, 255, 140)
-        StatusMsg.Text = "✔ Key hợp lệ! Đang khởi chạy Solix Hub..."
-        CheckKeyBtn.Text = "✔ THÀNH CÔNG"
+        StatusMsg.Text = Translations[currentLang].ValidStatus
+        CheckKeyBtn.Text = Translations[currentLang].SuccessBtn
         CheckKeyBtn.BackgroundColor3 = Color3.fromRGB(40, 150, 70)
         
         -- 🌟 LƯU TRẠNG THÁI XÁC THỰC VÀO FILE MÁY TÍNH/ĐIỆN THOẠI
@@ -417,10 +503,10 @@ CheckKeyBtn.MouseButton1Click:Connect(function()
         PlaySuccessFadeOut()
     else
         isChecking = false
-        CheckKeyBtn.Text = "✔ KIỂM TRA KEY"
+        CheckKeyBtn.Text = Translations[currentLang].CheckKey
         StatusBanner.BackgroundColor3 = Color3.fromRGB(65, 15, 20)
         StatusMsg.TextColor3 = Color3.fromRGB(255, 100, 100)
-        StatusMsg.Text = "✖ Key không hợp lệ hoặc đã hết hạn ngày hôm nay!"
+        StatusMsg.Text = Translations[currentLang].InvalidStatus
         
         InputStroke.Color = Color3.fromRGB(255, 70, 70)
         task.wait(0.6)
