@@ -70,7 +70,7 @@ end
 local function LaunchMainScript()
     task.spawn(function()
         local success, result = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/refs/heads/main/stealaegg"))()
+            return loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/refs/heads/main/stealaeggs"))()
         end)
         if not success then
             warn("[Miranda Hub Error]:", result)
